@@ -8,14 +8,6 @@ class Person {
     }
 }
 
-const hieu =  new Person("Hieu", 21)
-const Manh = new Person("Manh", 27)
-
-console.log(Manh)
-console.log(hieu)
-
-
-
 ////////////////
 
 class Dog {
@@ -35,13 +27,6 @@ class Dog {
         this.name = theName
     }
 }
-
-let fuzzy = new Dog("a","b")
-
-fuzzy._breed = "chihuahua"
-fuzzy._name = "fuzzy"
-
-console.log(fuzzy)
 
 
 ////////////////////
@@ -78,12 +63,6 @@ class Rectangle {
     }
 }
 
-const TheRectangle = new Rectangle(3,6)
-
-console.log(`Area:${ TheRectangle.calculateArea()}`)
-console.log(`Perimeter:${TheRectangle.calculatePerimeter()}`)
-
-
 //////////////////////////
 
 class Circle {
@@ -114,20 +93,10 @@ class Circle {
     }
 }
 
-const AnotherCircle = new Circle(1)
-
-console.log(`Initial radius: ${AnotherCircle.radius}`)
-AnotherCircle.radius = 3
-
-console.log(`Area is:${AnotherCircle.calculateArea()}`)
-console.log(`Circumference is:${AnotherCircle.calculateCircumference()}`)
-
-
-
 ///////////////////////////////////////
 
 
-class Book {
+class Boook {
     readonly title: string
     readonly author: string
     readonly ISBN: string
@@ -144,13 +113,13 @@ class Book {
 }
 
 class BookCollection {
-    private books: Book[] = []
+    private books: Boook[] = []
 
-    addBooks(book:Book): void {
+    addBook(book:Boook): void {
         this.books.push(book)
     }
 
-    removeBook(ISBN: string): Book | undefined {
+    removeBook(ISBN: string): Boook | undefined {
         const index = this.books.findIndex((book) => book.ISBN === ISBN)
         if (index !== -1) {
             const removedBook = this.books[index]
@@ -159,30 +128,14 @@ class BookCollection {
         }
     }
 
-    getBooks(): Book[] {
+    getBooks(): Boook[] {
         return [...this.books]
     }
 }
 
-const book1 = new Book("Sinh hoc 9", "Mot nhom nguoi nao do biet sinh hoc", "1093920907")
-const book2 = new Book("Giao duc cong dan", "Mot nhom nguoi nao do co dao duc va phap luat", "93485289743")
-
-const library = new BookCollection()
-library.addBooks(book1)
-library.addBooks(book2)
-
-console.log("Available books:")
-library.getBooks().forEach((book) => console.log(book.toString()))
-
-const removedBook = library.removeBook("")
-if (removedBook) {
-    console.log(`Removed book: ${removedBook.toString()}`)
-}
-
-
 /////////////////////////
 
-class Employee {
+class Employee1 {
     private name: string
     private jobtitle :string
     private salary : number
@@ -215,14 +168,6 @@ class Employee {
                 Salary:${this.salary}$`
     }
 }
-
-const Dave = new Employee("Dave","Mechanical Engineer", 20000)
-
-console.log(`New employee details:${Dave.toString()}`)
-
-Dave.updateSalary(20)
-
-console.log(`Employee Salary Updated:${Dave.toString()}`)
 
 //////////////////////////
 
@@ -321,32 +266,6 @@ class Bank {
     }
 }
 
-const VPBank = new Bank()
-
-const account1 = new Account("Dave", 3000)
-const account2 = new Account("Liam", 5000)
-
-VPBank.addAccount(account1)
-VPBank.addAccount(account2)
-
-VPBank.Accountslist()
-
-VPBank.deposit("Dave",2000)
-VPBank.withdraw("Liam",1000)
-
-VPBank.Accountslist()
-
-const removedAccount = VPBank.removeAccount("Dave")
-
-if(removedAccount) {
-    console.log("Removed account:", removedAccount.toString())
-}
-    else {
-        console.log("Account not found for removal")
-    }
-
-    VPBank.Accountslist()
-
 
 ////////////////////////////////
 
@@ -393,5 +312,194 @@ class TrafficLight {
 }
 
 
-const Pillar1 =  new TrafficLight(TrafficLightColor.RED, 30)
-Pillar1.startLoop();
+///////////////////////////////
+
+
+class Employee2 {
+     name: string
+     private salary: number
+     private hireDate: Date
+
+    constructor(name: string, salary: number, hireDate: Date) {
+        this.name = name
+        this.salary = salary
+        this.hireDate = hireDate
+    }
+    public getYearOfService(): number {
+        const today = new Date();
+        const years = today.getFullYear() - this.hireDate.getFullYear();
+        return years;
+    }
+}
+
+///////////////////////////////
+
+class Student {
+    name: string;
+    grade: number;
+    courses: string[];
+
+    constructor(name: string, grade: number) {
+        this.name = name;
+        this.grade = grade;
+        this.courses = [];
+    }
+
+    addCourse(courseName: string): void {
+        if(!this.courses.includes(courseName)) {
+            this.courses.push(courseName);
+            console.log(`${courseName} added for ${this.name}`);
+        } else {
+            console.log(`${courseName} already enrolled for ${this.name}`)
+        }
+    }
+
+    removeCourse(courseName: string): void {
+         const courseIndex = this.courses.indexOf(courseName);
+         if (courseIndex !== -1) {
+            this.courses.splice(courseIndex, 1)
+            console.log(`${courseName} removed for ${this.name}`)
+         } else {
+            console.log(`${courseName} not found for ${this.name}`);
+         }
+    }
+}
+
+////////////////////////////////
+
+class Book {
+    readonly name: string
+    readonly author: string;
+
+    constructor(name: string, author: string) {
+        this.name = name;
+        this.author = author
+    }
+}
+
+class Library {
+    private books: Book[] = []
+
+    addBook(book: Book): void {
+        this.books.push(book);
+        console.log(`${book.name} by ${book.author} added to the library`)
+    }
+
+    removeBook(name: string): void {
+        const libraryIndex = this.books.findIndex((book) => book.name === name)
+        if (libraryIndex !== -1) {
+            this.books.splice(libraryIndex, 1)
+            console.log(`${name} removed from library }`)
+        }
+        else {
+            console.log(`${name} not found in library `)
+        }
+    }
+}
+
+////////////////////////////
+
+class Airplane {
+    private FlightNumber: string;
+    private destination: string;
+    private departureTime: Date; 
+    DelayFlight: boolean = false;
+
+    constructor(FlightNumber: string ,destination: string, departureTime: Date) {
+        this.FlightNumber = FlightNumber;
+        this.destination = destination;
+        this.departureTime = departureTime;
+    }
+
+    setDelay(DelayFlight: boolean): void {
+        this.DelayFlight = DelayFlight
+    }
+
+    checkFlightStatus(): void {
+        if(this.DelayFlight) {
+         console.log(`Flight number ${this.FlightNumber} flying to ${this.destination} has been delayed`);
+        } else {
+         console.log(`Flight number ${this.FlightNumber} flying to ${this.destination} is on time`)
+        }
+    }
+}
+
+//////////////////////
+
+class Product {
+    private name: string;
+    private quantity: number;
+
+    constructor(name: string, quantity: number) {
+        this.name = name;
+        this.quantity = quantity
+    }
+
+    get Name(): string{
+        return this.name
+    }
+
+    get Quantity(): number {
+        return this.quantity
+    }
+
+    set Quantity(Quantity: number) {
+        this.quantity = Quantity;
+    }
+}
+
+class Inventory {
+    private products: Product[] = [];
+    readonly InvCapacity: number;
+    readonly lowInventoryThreshold : number; 
+
+    constructor(InvCapacity: number, lowInventoryThreshold: number) {
+        this.InvCapacity = InvCapacity;
+        this.lowInventoryThreshold = lowInventoryThreshold;
+    }
+
+    getTotalInventory(): number {
+        let totalQuantity = 0;
+        for (const product of this.products) {
+            totalQuantity += product.Quantity
+        }
+        return totalQuantity;
+    }
+
+    addProduct(product: Product): void {
+        if (this.getTotalInventory() + product.Quantity <= this.InvCapacity) {
+        this.products.push(product);
+        console.log(`${product.Name} x ${product.Quantity} added to Inventory`)
+        } else {
+            console.log("Insufficient capacity")
+        }
+    }
+
+    removeProduct(productName: string, Quantity: number): void {
+        const productIndex = this.products.findIndex((product) => product.Name === productName)
+        if (productIndex !== -1) {
+            const product = this.products[productIndex];
+            if (product.Quantity >= Quantity) {
+                product.Quantity -= Quantity;
+                console.log(`${productName} x ${Quantity} removed from Inventory `)
+            }
+        }
+    }
+
+    LowInventory(): boolean {
+        const remainingCapacity = this.InvCapacity - this.getTotalInventory();
+        return remainingCapacity <= this.lowInventoryThreshold;
+    }
+}
+
+const Backpack = new Inventory(100,10);
+
+const product1 = new Product("Water bottle",90)
+
+Backpack.addProduct(product1);
+
+if (Backpack.LowInventory()) {
+    console.log("Inventory is low")
+} else {
+    console.log("Inventory is at sufficient levels")
+}
